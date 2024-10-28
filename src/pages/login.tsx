@@ -18,7 +18,7 @@ export default function LoginPage() {
     });
 
     if (response.ok) {
-      router.push('/dashboard'); // перенаправлення до захищеної сторінки
+      router.push('/'); // перенаправлення до захищеної сторінки
     } else {
       alert('Login failed');
     }

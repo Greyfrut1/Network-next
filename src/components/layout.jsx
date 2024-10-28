@@ -1,11 +1,10 @@
 import React from "react";
-import { Children } from "react";
 
-export default function Layout(){
+export default function Layout({ children }){
     return(
         <div>
             <header>header</header>
-            {Children}
+            {children}
             <footer>footer</footer>
         </div>
     )

@@ -1,18 +1,21 @@
-// pages/dashboard.tsx
+// pages/test.tsx
 import { GetServerSideProps } from 'next';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
+import Layout from '../components/layout'
 
 
 export default function Dashboard() {
+  const router = useRouter();
   const handleLogout = async () => {
     await fetch('/api/logout', { method: 'POST' });
-    Router.push('/login');
+    router.push('/login');
   };
-  return <div><h1>Welcome to your dashboard
+  return <Layout>
+  <div><h1>Welcome to your dashboard
   </h1>
     <form onSubmit={handleLogout}>
     <button type='submit'>Logout</button>
-    </form></div>;
+    </form></div></Layout>;
 }
 
 // Middleware для перевірки авторизації
