@@ -1,5 +1,5 @@
 // pages/index.tsx
-
+import '../global.css'
 import React from 'react';
 
 const IndexPage: React.FC = () => {
