@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-import '../global.css';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');

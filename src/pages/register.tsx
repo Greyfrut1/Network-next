@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { registerUser } from "@/untils/auth";
 import Link from "next/link";
 
-import '../global.css'
 
 const API_URL = process.env.NEXT_PUBLIC_BACK_API_URL as string;
 
