@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { registerUser } from "@/untils/auth";
 import Link from "next/link";
+import { useRouter } from 'next/router';
 
 
 const API_URL = process.env.NEXT_PUBLIC_BACK_API_URL as string;
@@ -12,6 +13,7 @@ export default function Register() {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,7 +25,7 @@ export default function Register() {
 
     try {
       await registerUser(name, email, password, API_URL);
-      alert("Registered successfully");
+      router.push('/');
     } catch (error) {
       console.error(error);
       setError("Registration failed. Please try again.");

@@ -1,12 +1,13 @@
 // pages/index.tsx
 import React from 'react';
+import Layout from '@/components/layout';
 
 const IndexPage: React.FC = () => {
   return (
-    <div>
+    <Layout>
       <h1>Index Page</h1>
       <p>This is the index page</p>
-    </div>
+    </Layout>
   );
 };
 

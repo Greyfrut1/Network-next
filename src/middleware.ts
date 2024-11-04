@@ -1,32 +1,33 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
-import { verify } from 'jsonwebtoken'
+import { jwtVerify } from 'jose';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-export function middleware(request: NextRequest) {
-  const token = request.cookies.get('auth-token')
+export async function middleware(request: NextRequest) {
+  const token = request.cookies.get('token');
 
-  // Список захищених маршрутів
-  const protectedPaths = ['/dashboard', '/profile']
+  const protectedPaths = ['/dashboard', '/profile'];
   const isProtectedPath = protectedPaths.some(path =>
     request.nextUrl.pathname.startsWith(path)
-  )
+  );
+
 
   if (isProtectedPath) {
     if (!token) {
-      return NextResponse.redirect(new URL('/login', request.url))
+      return NextResponse.redirect(new URL('/login', request.url));
     }
 
     try {
-      verify(token.value, process.env.JWT_SECRET!)
-      return NextResponse.next()
+      // Перевірка JWT за допомогою jose
+      await jwtVerify(token.value, new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET!));
+      return NextResponse.next();
     } catch {
-      return NextResponse.redirect(new URL('/login', request.url))
+      return NextResponse.redirect(new URL('/login', request.url));
     }
   }
 
-  return NextResponse.next()
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/profile/:path*']
-}
+  matcher: ['/dashboard/:path*', '/profile/:path*'],
+};
