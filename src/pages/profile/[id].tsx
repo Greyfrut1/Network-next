@@ -2,8 +2,13 @@ import { useEffect, useState } from 'react';
 import Layout from '../../components/layout';
 import { useRouter } from 'next/router';
 
+interface UserData {
+  name: string;
+  email: string;
+}
+
 export default function Profile() {
-  const [userData, setUserData] = useState<any>(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
@@ -38,6 +43,7 @@ export default function Profile() {
         setUserData(data[0]); // Зберігаємо дані користувача
         setLoading(false);
       } catch (err) {
+        console.error(err);
         setError('Failed to fetch user data');
         setLoading(false);
       }

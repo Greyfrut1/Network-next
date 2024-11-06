@@ -2,8 +2,13 @@
 import { useEffect, useState } from 'react';
 import Layout from '../components/layout';
 
+interface UserData {
+  name: string;
+  email: string;
+}
+
 export default function Profile() {
-  const [userData, setUserData] = useState<any>(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -24,6 +29,7 @@ export default function Profile() {
         setLoading(false);
       })
       .catch((err) => {
+        console.error(err);
         setError('Failed to fetch user data');
         setLoading(false);
       });
@@ -61,8 +67,8 @@ export default function Profile() {
     <Layout>
       <div>
         <h2>User Profile</h2>
-        <p><strong>Name:</strong> {userData.name}</p>
-        <p><strong>Email:</strong> {userData.email}</p>
+        <p><strong>Name:</strong> {userData?.name}</p>
+        <p><strong>Email:</strong> {userData?.email}</p>
         {/* Додаткові дані користувача можна тут відобразити */}
       </div>
     </Layout>
