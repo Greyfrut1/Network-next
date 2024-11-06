@@ -18,7 +18,8 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
     const { token } = response.data.data;
 
     // Зберігаємо токен у HTTP-only cookie для безпечного доступу
-    res.setHeader('Set-Cookie', `token=${token}; HttpOnly; Path=/; Secure; SameSite=Strict`);
+
+    res.setHeader('Set-Cookie', `token=${token}; Path=/; Secure; SameSite=Strict`);
     res.status(200).json({ message: 'Login successful' });
   } catch (error) {
     console.log(error)
