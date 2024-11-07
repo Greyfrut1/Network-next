@@ -19,7 +19,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
 
     // Зберігаємо токен у HTTP-only cookie для безпечного доступу
 
-    res.setHeader('Set-Cookie', `token=${token}; Path=/; Secure=false; SameSite=Lax`);
+    res.setHeader('Set-Cookie', `token=${token}; Path=/; SameSite=Lax`);
     res.status(200).json({ message: 'Login successful' });
   } catch (error) {
     console.log(error)
