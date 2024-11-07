@@ -7,6 +7,9 @@ interface UserData {
   email: string;
 }
 
+const API_URL = process.env.NEXT_PUBLIC_BACK_API_URL as string;
+
+
 export default function Profile() {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -17,7 +20,7 @@ export default function Profile() {
     const token = getCookieValue('token');
     console.log(token)
     // Виконуємо запит для отримання даних користувача
-    fetch('http://localhost:5000/api/user', {
+    fetch(`${API_URL}/user`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`, // Передаємо токен

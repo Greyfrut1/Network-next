@@ -7,6 +7,9 @@ interface UserData {
   email: string;
 }
 
+const API_URL = process.env.NEXT_PUBLIC_BACK_API_URL as string;
+
+
 export default function Profile() {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -31,7 +34,7 @@ export default function Profile() {
         const token = getCookieValue('token');
 
         const response = await fetch(
-          `http://localhost:5000/api/profile/${router.query.id}`,
+          `${API_URL}/profile/${router.query.id}`,
           {
             method: 'GET',
             headers: {
