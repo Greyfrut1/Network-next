@@ -6,12 +6,10 @@ export default function Header() {
    const router = useRouter();
    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-   // Перевіряємо стан автентифікації при завантаженні компонента
    useEffect(() => {
      checkAuthStatus();
    }, []);
 
-   // Функція для перевірки статусу автентифікації
    const checkAuthStatus = async () => {
      try {
        const response = await fetch('/api/auth/status');
