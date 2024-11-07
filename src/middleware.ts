@@ -17,7 +17,6 @@ export async function middleware(request: NextRequest) {
     }
 
     try {
-      // Перевірка JWT за допомогою jose
       await jwtVerify(token.value, new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET!));
       return NextResponse.next();
     } catch {

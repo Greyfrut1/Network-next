@@ -18,7 +18,6 @@ export default function Dashboard() {
     </form></div></Layout>;
 }
 
-// Middleware для перевірки авторизації
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { req } = context;
   const token = req.cookies.token;
@@ -29,6 +28,5 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  // Додатково: верифікувати токен на сервері, якщо потрібно
   return { props: {} };
 };

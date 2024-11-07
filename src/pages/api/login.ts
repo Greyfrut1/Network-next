@@ -17,8 +17,6 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
     const response = await axios.post(`${API_URL}/login`, { email, password });
     const { token } = response.data.data;
 
-    // Зберігаємо токен у HTTP-only cookie для безпечного доступу
-
     res.setHeader('Set-Cookie', `token=${token}; Path=/; SameSite=Lax`);
     res.status(200).json({ message: 'Login successful' });
   } catch (error) {
